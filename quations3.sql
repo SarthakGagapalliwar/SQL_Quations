@@ -12,8 +12,6 @@ group by first_name
 having count(*)=1;
 
 
-
-
 -- Show patient_id and first_name from patients where their first_name start and ends with 's' and is at least 6 characters long.
 select patient_id,first_name
 from patients
@@ -38,5 +36,20 @@ where diagnosis='Dementia'
 select first_name
 from patients
 order by len(first_name),first_name
+
+
+-- Show the total amount of male patients and the total amount of female patients in the patients table.
+-- Display the two results in the same row.
+select
+(select count(*) from patients where gender='M') As male_patients,
+(select count(*) from patients where gender='F') As female_patients
+
+
+
+-- Show first and last name, allergies from patients which have allergies to either 'Penicillin' or 'Morphine'. Show results ordered ascending by allergies then by first_name then by last_name.
+select first_name,last_name,allergies
+from patients
+where allergies = 'Morphine' or allergies = 'Penicillin'
+order by allergies ,first_name,last_name
 
 
